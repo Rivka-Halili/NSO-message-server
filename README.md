@@ -1,9 +1,11 @@
 # NSO-message-server
 api with flask using pytest and sqlite
 
-GET /message/1 
+for active endpoints are:
 
-DELETE /message/1 no such table: message
+GET /message/1
+
+DELETE /message/1 
 
 GET /messages 
 
@@ -18,44 +20,27 @@ DELETE /messages?session_id=200
 POST /message/add
 
 
-test plan 
+pre requirements
 
-def test_get_signle_message():
-     response = requests.get("http://127.0.0.1:5000/message/1 ")
-     assert response.status_code == 200 
+to run this application install:
 
-     
+*python3
 
-def test_get_all_messages():
-     response = requests.get("http://127.0.0.1:5000/messages")
-     assert response.status_code == 200
+*virtul environment
 
-def test_get_messages_by_app():
-     response = requests.get("http://127.0.0.1:5000/messages?application_id=100")
-     assert response.status_code == 200
+*sqlite
 
-def test_get_messages_by_session():
-     response = requests.get("http://127.0.0.1:5000/messages?session_id=200")
-     assert response.status_code == 200
+and for the run test you need also 
 
-def test_post_message():
-     response = requests.post("http://127.0.0.1:5000/message/add", data=json.dumps({
-"message_id": "20",
- "application_id": "150",
- "session_id": "250",
- "participants": "150",
- "content": "150"}))
-     assert response.status_code == 200
+*pytest
 
-def test_delete_signle_message():
-     response = requests.delete("http://127.0.0.1:5000/message/1")
-     assert response.status_code == 200 
-     
-def test_delete_messages_by_app():
-     response = requests.delete("http://127.0.0.1:5000/messages?application_id=100")
-     assert response.status_code == 200
+to run the tests run the server by  app.py in the background
 
-def test_delete_messages_by_session():
-     response = requests.delete("http://127.0.0.1:5000/messages?session_id=100")
-     assert response.status_code == 200
+and than from the command prompt on the tests directory
+
+ run python -q messagetests.py
+
+
+
+
 
