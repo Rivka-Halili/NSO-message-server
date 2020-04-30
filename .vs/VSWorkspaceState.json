@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\db\\__pycache__",
+    "\\models\\__pycache__",
+    "\\tests"
+  ],
+  "SelectedNode": "\\tests\\messagetests.py",
+  "PreviewInSolutionExplorer": false
+}
