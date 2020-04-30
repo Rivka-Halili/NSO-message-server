@@ -9,8 +9,11 @@ class Message(Resource):
         return {'message': 'Message not found!'}, 404
 
     def delete(self, id):
-        message_to_delete = MessageModel.delete_by_message_id(self, id)
-        return {'message': 'Message with {0}  was successfully deleted from database!'.format(id)}
+        if MessageModel.find_by_message_id(id):
+           message = MessageModel.delete_by_message_id(id)
+           return {'message': 'Message was successfully deleted from database!'},200
+        return {'message': 'There is no message with this id'},404
+
 
 class MessageList(Resource):
     def get(self):
@@ -37,13 +40,9 @@ class MessageList(Resource):
                messages = MessageModel.delete_by_app_id(args['application_id'])
             elif 'session_id' in args:
                  messages = MessageModel.delete_by_session_id(args['session_id'])
-            elif 'message_id' in args:
-                 messages = MessageModel.delete_by_message_id(args['message_id'])
             else:
                  return {'Not Found': 'The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again'}, 404
-
-            return {'message': 'Message {0} was successfully deleted from database!'
-                    .format(args[0])}
+            return {'message': 'Messages was successfully deleted from database!'} ,200
         return {'Not Found': 'The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again'}, 404
 
 class MessageRegister(Resource):
